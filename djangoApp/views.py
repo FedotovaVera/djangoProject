@@ -1,7 +1,8 @@
 from django.shortcuts import render
 
 def hello(request):
-    return render(request, 'hello.html')
+    context = {'var' : 'value'}
+    return render(request, 'hello.html', context)
 
 def main(request):
     return render(request, 'main.html')

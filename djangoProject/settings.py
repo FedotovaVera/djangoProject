@@ -114,9 +114,10 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
-
-STATIC_URL = 'static/'
-
+# python manage.py collectstatic
+STATIC_URL = '/static/'
+STATIC_ROOT = 'C:\\Users\\Student\\Desktop\\djangoProject\\assest'
+STATICFILES_DIRS = ('C:\\Users\\Student\\Desktop\\djangoProject\\djangoApp\\static',)
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
