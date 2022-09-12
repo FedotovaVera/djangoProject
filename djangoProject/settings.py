@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'djangoApp'
 ]
 
 MIDDLEWARE = [
@@ -54,7 +55,7 @@ ROOT_URLCONF = 'djangoProject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['C:\\Users\\Student\\Desktop\\djangoProject\\djangoApp\\templates'],
+        'DIRS': ['C:\\Users\\Дом\\PycharmProjects\\djangoProject\\djangoApp\\templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -116,8 +117,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 # python manage.py collectstatic
 STATIC_URL = '/static/'
-STATIC_ROOT = 'C:\\Users\\Student\\Desktop\\djangoProject\\assest'
-STATICFILES_DIRS = ('C:\\Users\\Student\\Desktop\\djangoProject\\djangoApp\\static',)
+STATIC_ROOT = 'C:\\Users\\Дом\\PycharmProjects\\djangoProject\\djangoApp\\assest'
+STATICFILES_DIRS = ('C:\\Users\\Дом\\PycharmProjects\\djangoProject\\djangoApp\\static',)
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 

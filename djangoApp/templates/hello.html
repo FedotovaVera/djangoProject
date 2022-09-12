@@ -1,11 +1,227 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Hello</title>
-</head>
-<body>
-    <p><img src="{% static 'picture.jpg' %}" width="250" height="200" alt="lorem"></p>
-</body>
+  <head>
+    <title>Landing Page</title>
+    <meta property="og:title" content="Landing Page" />
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta property="twitter:card" content="summary_large_image" />
+    <style data-tag="reset-style-sheet">
+      html {  line-height: 1.15;}body {  margin: 0;}* {  box-sizing: border-box;  border-width: 0;  border-style: solid;}p,li,ul,pre,div,h1,h2,h3,h4,h5,h6 {  margin: 0;  padding: 0;}button,input,optgroup,select,textarea {  font-family: inherit;  font-size: 100%;  line-height: 1.15;  margin: 0;}button,select {  text-transform: none;}button,[type="button"],[type="reset"],[type="submit"] {  -webkit-appearance: button;}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner {  border-style: none;  padding: 0;}button:-moz-focus,[type="button"]:-moz-focus,[type="reset"]:-moz-focus,[type="submit"]:-moz-focus {  outline: 1px dotted ButtonText;}a {  color: inherit;  text-decoration: inherit;}input {  padding: 2px 4px;}img {  display: block;}html { scroll-behavior: smooth  }
+    </style>
+    <style data-tag="default-style-sheet">
+      html {
+        font-family: Raleway;
+        font-size: 18px;
+      }
+
+      body {
+        font-weight: 400;
+        font-style:normal;
+        text-decoration: none;
+        text-transform: none;
+        letter-spacing: normal;
+        line-height: 1.55;
+        color: var(--dl-color-gray-black);
+        background-color: var(--dl-color-gray-white);
+
+      }
+    </style>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      data-tag="font"
+    />
+    <style>
+      html {
+      scroll-behavior: smooth;
+      }
+    </style>
+      <link rel="stylesheet" href="{% static "style.css" %}" />
+  </head>
+  <body>
+    <div>
+      <link href="{% static "home.css" %}" rel="stylesheet" />
+
+      <div class="home-container">
+        <div data-role="Header" class="home-navbar-container">
+          <div class="home-navbar">
+            <div class="home-left-side">
+
+              <img src="{% static 'icon.jpg' %}" width="70" height="50" alt="lorem">
+                <div data-type="BurgerMenu" class="home-burger-menu">
+                <svg viewBox="0 0 1024 1024" class="home-icon">
+                  <path
+                    d="M128 256h768v86h-768v-86zM128 554v-84h768v84h-768zM128 768v-86h768v86h-768z"
+                  ></path>
+                </svg>
+              </div>
+              <div class="home-links-container">
+                <span class="home-link anchor">Неделя</span>
+                <a href="#inspiration" class="home-link1 anchor">Месяц</a>
+                <span class="home-link2 anchor">Срочные</span>
+                <span class="home-link3 anchor">Напоминания</span>
+              </div>
+            </div>
+            <div class="home-right-side">
+              <button class="home-cta-btn anchor button">Войти</button>
+            </div>
+            <div data-type="MobileMenu" class="home-mobile-menu">
+              <div class="home-container1">
+                <img
+                  alt="image"
+                  src="https://play.teleporthq.io/static/svg/default-img.svg"
+                  class="home-image1"
+                />
+                <div data-type="CloseMobileMenu" class="home-close-menu">
+                  <svg viewBox="0 0 1024 1024" class="home-icon02">
+                    <path
+                      d="M810 274l-238 238 238 238-60 60-238-238-238 238-60-60 238-238-238-238 60-60 238 238 238-238z"
+                    ></path>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="inspiration" class="home-features">
+          <div class="home-heading-container">
+            <h2 class="home-text section-Heading">
+              Задачи на неделю
+            </h2>
+          </div>
+          <div class="home-cards-container">
+            <div class="home-features-card">
+              <div class="home-icon-container">
+                <h6> {{day_1}} </h6>
+              </div>
+              <div class="home-text-container">
+                <span class="home-heading card-Heading">Понедельник</span>
+                <span class="home-text1 card-Text">
+                  Список
+                </span>
+              </div>
+            </div>
+            <div class="home-features-card1">
+              <div class="home-icon-container1">
+                <h6>{{day_2}}</h6>
+              </div>
+              <div class="home-text-container1">
+                <span class="home-heading1 card-Heading">Вторник</span>
+                <span class="home-text2 card-Text">
+                  Список
+                </span>
+              </div>
+            </div>
+            <div class="home-features-card2">
+              <div class="home-icon-container2">
+                <h6>{{day_3}}</h6>
+              </div>
+              <div class="home-text-container2">
+                <span class="home-heading2 card-Heading">Среда</span>
+                <span class="home-text3 card-Text">
+                  Список
+                </span>
+              </div>
+            </div>
+            <div class="home-features-card3">
+              <div class="home-icon-container3">
+                <h6>{{day_4}}</h6>
+              </div>
+              <div class="home-text-container3">
+                <span class="home-heading3 card-Heading">Четверг</span>
+                <span class="home-text4 card-Text">
+                  Список
+                </span>
+              </div>
+            </div>
+            <div class="home-features-card4">
+              <div class="home-icon-container4">
+                <h6>{{day_5}}</h6>
+              </div>
+              <div class="home-text-container4">
+                <span class="home-heading4 card-Heading">Пятница</span>
+                <span class="home-text5 card-Text">
+                 {{time_task}} - {{task_name}}
+                </span>
+              </div>
+            </div>
+            <div class="home-features-card5">
+              <div class="home-icon-container5">
+                <h6>{{day_6}}</h6>
+              </div>
+              <div class="home-text-container5">
+                <span class="home-heading5 card-Heading">Заметки на выходные</span>
+                <span class="home-text6 card-Text">
+                  Список
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="home-section-separator"></div>
+        <div class="home-section-separator1"></div>
+        <div class="home-get-in-touch">
+          <h2 class="home-text7 section-Heading">Добавить новую задачу</h2>
+          <div class="home-content-container">
+            <div class="home-form-container">
+              <span class="home-heading6 bigCard-Heading">
+                Внесите данные по задаче
+              </span>
+              <input
+                type="text"
+                required="true"
+                placeholder="Название задачи"
+                class="home-name input"
+              />
+              <input
+                type="text"
+                required="true"
+                placeholder="Дата задачи"
+                class="home-email input"
+              />
+              <input
+                type="text"
+                required="true"
+                placeholder="Время задачи"
+                class="home-email input"
+              />
+              <textarea
+                placeholder="Описание задачи"
+                class="home-message textarea"
+              ></textarea>
+              <button class="home-cta-btn1 anchor button">Оправить</button>
+            </div>
+          </div>
+        </div>
+        <div class="home-section-separator2"></div>
+        <div class="home-footer-container">
+          <div class="home-footer">
+            <div class="home-social-links">
+
+            </div>
+            <div class="home-copyright-container">
+              <svg viewBox="0 0 1024 1024" class="home-icon28">
+                <path
+                  d="M512 854q140 0 241-101t101-241-101-241-241-101-241 101-101 241 101 241 241 101zM512 86q176 0 301 125t125 301-125 301-301 125-301-125-125-301 125-301 301-125zM506 390q-80 0-80 116v12q0 116 80 116 30 0 50-17t20-43h76q0 50-44 88-42 36-102 36-80 0-122-48t-42-132v-12q0-82 40-128 48-54 124-54 66 0 104 38 42 42 42 98h-76q0-14-6-26-10-20-14-24-20-20-50-20z"
+                ></path>
+              </svg>
+              <span class="anchor">2022</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://unpkg.com/@teleporthq/teleport-custom-scripts"></script>
+  </body>
 </html>
