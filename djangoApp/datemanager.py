@@ -13,12 +13,12 @@ class DateManager:
         self.week_end = self.week_end()
 
     def day_today(self):
-        today = date.today()
-        return today
+        tdy = date.today()
+        return tdy
 
     def day_monday(self):
-        today = self.day_today
-        monday = today - timedelta(days=today.weekday())
+        tdy = self.day_today
+        monday = tdy - timedelta(days=tdy.weekday())
         return monday
 
     def day_tuesday(self):
@@ -27,7 +27,7 @@ class DateManager:
         return tuesday
 
     def day_wednesday(self):
-        monday = self.day_monday()
+        monday = self.day_monday
         wednesday = monday + timedelta(days=2)
         return wednesday
 
@@ -48,8 +48,8 @@ class DateManager:
         return str(saturday.day) + '-' + str(sunday.day)
 
     def week_start(self):
-        today = self.day_today
-        monday = today - timedelta(days=today.weekday())
+        tdy = self.day_today
+        monday = tdy - timedelta(days=tdy.weekday())
         return monday
 
     def week_end(self):

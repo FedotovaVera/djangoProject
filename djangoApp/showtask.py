@@ -1,5 +1,5 @@
 import sqlite3
-import datemanager
+from djangoApp import datemanager
 
 
 class ShowTask:
