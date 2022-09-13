@@ -1,16 +1,31 @@
 from django.db import models
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 
-class Users(models.Model):
-    name = models.CharField(max_length=250)
-    position = models.CharField(max_length=250)
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    position = models.TextField(max_length=500, blank=True)
+    birth_date = models.DateField(null=True, blank=True)
 
 
 class Tasks(models.Model):
-    user = models.ForeignKey(Users, on_delete=models.CASCADE, null=True)
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True)
     task_name = models.CharField(max_length=250)
     task_comment = models.CharField(max_length=4000)
     date_add = models.CharField(max_length=250)
     date_end = models.CharField(max_length=250)
     date_task = models.CharField(max_length=250)
     time_task = models.CharField(max_length=250)
+
+
+@receiver(post_save, sender=User)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        Profile.objects.create(user=instance)
+
+
+@receiver(post_save, sender=User)
+def save_user_profile(sender, instance, **kwargs):
+    instance.profile.save()

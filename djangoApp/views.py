@@ -1,13 +1,7 @@
 from django.shortcuts import render
-from models import Users
-import os
-import django
-
-
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'djangoProject.settings')
-django.setup()
+from .models import Profile
 
 def hello(request):
-    t = Users.object.All()
     return render(request, 'hello.html')
+
 

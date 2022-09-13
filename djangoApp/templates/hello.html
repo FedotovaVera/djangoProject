@@ -108,7 +108,12 @@
               <div class="home-text-container">
                 <span class="home-heading card-Heading">Понедельник</span>
                 <span class="home-text1 card-Text">
-                  Список
+                  <h2>{{ user.get_full_name }}</h2>
+<ul>
+  <li>Username: {{ user.username }}</li>
+  <li>Location: {{ user.profile.position }}</li>
+  <li>Birth Date: {{ user.profile.birth_date }}</li>
+</ul>
                 </span>
               </div>
             </div>
