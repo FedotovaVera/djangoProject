@@ -26,6 +26,8 @@ class Tasks(models.Model):
     date_task = models.CharField(max_length=250)
     time_task = models.CharField(max_length=250)
 
+    def __str__(self):
+        return self.task_name
 """
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
