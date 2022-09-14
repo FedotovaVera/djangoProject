@@ -3,15 +3,22 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
+"""
+class Maine(models.Model):
+    user = models.TextField(max_length=500, blank=True)
+    position = models.TextField(max_length=500, blank=True)
+    birth_date = models.TextField(max_length=500, blank=True)
+"""
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    id = models.IntegerField(primary_key=True)
+    user = models.TextField(max_length=500, blank=True)
     position = models.TextField(max_length=500, blank=True)
     birth_date = models.DateField(null=True, blank=True)
 
 
 class Tasks(models.Model):
-    user = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True)
+    user_id = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True)
     task_name = models.CharField(max_length=250)
     task_comment = models.CharField(max_length=4000)
     date_add = models.CharField(max_length=250)
@@ -19,7 +26,7 @@ class Tasks(models.Model):
     date_task = models.CharField(max_length=250)
     time_task = models.CharField(max_length=250)
 
-
+"""
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
@@ -29,3 +36,4 @@ def create_user_profile(sender, instance, created, **kwargs):
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
+"""

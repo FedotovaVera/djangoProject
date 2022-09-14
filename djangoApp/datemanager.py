@@ -3,22 +3,17 @@ from datetime import date, timedelta
 
 class DateManager:
     def __init__(self):
-        self.day_today = self.day_today()
         self.day_monday = self.day_monday()
         self.day_tuesday = self.day_tuesday()
         self.day_wednesday = self.day_wednesday()
         self.day_thursday = self.day_thursday()
         self.day_friday = self.day_friday()
-        self.week_start = self.week_start()
-        self.week_end = self.week_end()
+        self.day_saturday = self.day_saturday()
+        self.day_sunday = self.day_sunday()
 
-    def day_today(self):
-        tdy = date.today()
-        return tdy
 
     def day_monday(self):
-        tdy = self.day_today
-        monday = tdy - timedelta(days=tdy.weekday())
+        monday = date.today() - timedelta(days=date.today().weekday())
         return monday
 
     def day_tuesday(self):
@@ -47,12 +42,12 @@ class DateManager:
         sunday = monday + timedelta(days=6)
         return str(saturday.day) + '-' + str(sunday.day)
 
-    def week_start(self):
-        tdy = self.day_today
-        monday = tdy - timedelta(days=tdy.weekday())
-        return monday
-
-    def week_end(self):
+    def day_saturday(self):
         monday = self.day_monday
-        week_end = monday + timedelta(days=6)
-        return week_end
+        saturday = monday + timedelta(days=5)
+        return saturday
+
+    def day_sunday(self):
+        monday = self.day_monday
+        sunday = monday + timedelta(days=6)
+        return sunday
