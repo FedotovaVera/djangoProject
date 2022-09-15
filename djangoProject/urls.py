@@ -19,5 +19,6 @@ from django.urls import path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('post_btn', views.post_btn, name='djangoApp'),
     path('', views.hello)
 ]

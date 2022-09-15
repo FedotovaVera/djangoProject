@@ -35,6 +35,10 @@ def hello(request):
                'tsk_1': tsk1, 'tsk_2': tsk2, 'tsk_3': tsk3, 'tsk_4': tsk4, 'tsk_5': tsk5, 'tsk_6': tsk6, 'tsk_7': tsk7}
     return render(request, 'hello.html', context=context)
 
+
+def post_btn(request):
+    return render(request, 'main.html')
+
     """
 #вытащить из таблицы
 def main(request): #вытащить из таблицы
