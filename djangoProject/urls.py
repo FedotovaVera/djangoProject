@@ -19,6 +19,9 @@ from django.urls import path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('post_btn', views.post_btn, name='djangoApp'),
-    path('', views.hello)
+    path('addtask/', views.AddTask, name='add-task'),
+    path('<int:pk>/view', views.TaskDetailView.as_view(), name='view-task'),
+    path('<int:pk>/update', views.UpdateTask.as_view(), name='update-task'),
+    path('<int:pk>/delete', views.DeleteTask.as_view(), name='delete-task'),
+    path('', views.hello, name='index-page')
 ]

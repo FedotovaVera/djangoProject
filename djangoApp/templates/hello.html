@@ -2,7 +2,7 @@
 {% load static %}
 <html lang="en">
   <head>
-    <title>Landing Page</title>
+    <title>Просмотр задач</title>
     <meta property="og:title" content="Landing Page" />
     <meta property="twitter:card" content="summary_large_image" />
     <meta charset="utf-8" />
@@ -13,7 +13,16 @@
     <meta property="twitter:card" content="summary_large_image" />
     <style data-tag="reset-style-sheet">
       html {  line-height: 1.15;}body {  margin: 0;}* {  box-sizing: border-box;  border-width: 0;  border-style: solid;}p,li,ul,pre,div,h1,h2,h3,h4,h5,h6 {  margin: 0;  padding: 0;}button,input,optgroup,select,textarea {  font-family: inherit;  font-size: 100%;  line-height: 1.15;  margin: 0;}button,select {  text-transform: none;}button,[type="button"],[type="reset"],[type="submit"] {  -webkit-appearance: button;}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner {  border-style: none;  padding: 0;}button:-moz-focus,[type="button"]:-moz-focus,[type="reset"]:-moz-focus,[type="submit"]:-moz-focus {  outline: 1px dotted ButtonText;}a {  color: inherit;  text-decoration: inherit;}input {  padding: 2px 4px;}img {  display: block;}html { scroll-behavior: smooth  }
-    </style>
+    img {
+        float: left;
+        margin-right: 5px;
+        opacity: 0.0;
+        filter: alpha(opacity=40); /*для IE8 и более ранних версий*/
+      }
+      img:hover {
+        opacity: 1.0;
+        filter: alpha(opacity=100);
+</style>
     <style data-tag="default-style-sheet">
       html {
         font-family: Raleway;
@@ -57,8 +66,6 @@
         <div data-role="Header" class="home-navbar-container">
           <div class="home-navbar">
             <div class="home-left-side">
-
-              <img src="{% static 'icon.jpg' %}" width="70" height="50" alt="lorem">
                 <div data-type="BurgerMenu" class="home-burger-menu">
                 <svg viewBox="0 0 1024 1024" class="home-icon">
                   <path
@@ -74,6 +81,9 @@
               </div>
             </div>
             <div class="home-right-side">
+              <a href="/addtask">
+                <button class="home-cta-btn1 anchor button">Оправить</button>
+                </a>
               <button class="home-cta-btn anchor button">Войти</button>
             </div>
             <div data-type="MobileMenu" class="home-mobile-menu">
@@ -110,7 +120,19 @@
                 <span class="home-text1 card-Text">
                   {% if tsk_1 %}
                     {% for i in tsk_1 %}
-                      {{i.time_task}}: {{i.task_name}} <br>
+                  <div style="float: left">
+                  <a href = "{% url 'view-task' i.id %}">
+                    {{i.time_task}}: {{i.task_name}}
+                  </a>&ensp;</div>
+                  <div style="float: left">
+                  <a href = "{% url 'update-task' i.id %}">
+                  <img src="{% static "update.png" %}" width="17" height="17" title="Редактировать">
+                  </a></div>
+                  <div style="float: left">
+                  <a href = "{% url 'delete-task' i.id %}">
+                  <img src="{% static "delete.png" %}" width="17" height="17" title="Удалить">
+                  </a></div>
+                  <br>
                     {% endfor %}
                   {% else %}
                   На этот день не установлено задач
@@ -127,7 +149,18 @@
                 <span class="home-text2 card-Text">
                   {% if tsk_2 %}
                     {% for i in tsk_2 %}
-                      {{i.time_task}}: {{i.task_name}} <br>
+                      <div style="float: left">
+                      <a href = "{% url 'view-task' i.id %}">
+                        {{i.time_task}}: {{i.task_name}}
+                      </a>&ensp;</div>
+                      <div style="float: left">
+                      <a href = "{% url 'update-task' i.id %}">
+                      <img src="{% static "update.png" %}" width="17" height="17" title="Редактировать">
+                  </a></div>
+                  <div style="float: left">
+                  <a href = "{% url 'delete-task' i.id %}">
+                  <img src="{% static "delete.png" %}" width="17" height="17" title="Удалить">
+                      </a></div><br>
                     {% endfor %}
                   {% else %}
                   На этот день не установлено задач
@@ -144,7 +177,18 @@
                 <span class="home-text3 card-Text">
                  {% if tsk_3 %}
                     {% for i in tsk_3 %}
-                      {{i.time_task}}: {{i.task_name}} <br>
+                      <div style="float: left">
+                  <a href = "{% url 'view-task' i.id %}">
+                    {{i.time_task}}: {{i.task_name}}
+                  </a>&ensp;</div>
+                  <div style="float: left">
+                  <a href = "{% url 'update-task' i.id %}">
+                  <img src="{% static "update.png" %}" width="17" height="17" title="Редактировать">
+                  </a></div>
+                  <div style="float: left">
+                  <a href = "{% url 'delete-task' i.id %}">
+                  <img src="{% static "delete.png" %}" width="17" height="17" title="Удалить">
+                  </a></div><br>
                     {% endfor %}
                   {% else %}
                   На этот день не установлено задач
@@ -161,7 +205,18 @@
                 <span class="home-text4 card-Text">
                   {% if tsk_4 %}
                     {% for i in tsk_4 %}
-                      {{i.time_task}}: {{i.task_name}} <br>
+                      <div style="float: left">
+                  <a href = "{% url 'view-task' i.id %}">
+                    {{i.time_task}}: {{i.task_name}}
+                  </a>&ensp;</div>
+                  <div style="float: left">
+                  <a href = "{% url 'update-task' i.id %}">
+                  <img src="{% static "update.png" %}" width="17" height="17" title="Редактировать">
+                  </a></div>
+                  <div style="float: left">
+                  <a href = "{% url 'delete-task' i.id %}">
+                  <img src="{% static "delete.png" %}" width="17" height="17" title="Удалить">
+                  </a></div><br>
                     {% endfor %}
                   {% else %}
                   На этот день не установлено задач
@@ -178,7 +233,18 @@
                 <span class="home-text5 card-Text">
                  {% if tsk_5 %}
                     {% for i in tsk_5 %}
-                      {{i.time_task}}: {{i.task_name}} <br>
+                      <div style="float: left">
+                  <a href = "{% url 'view-task' i.id %}">
+                    {{i.time_task}}: {{i.task_name}}
+                  </a>&ensp;</div>
+                  <div style="float: left">
+                  <a href = "{% url 'update-task' i.id %}">
+                  <img src="{% static "update.png" %}" width="17" height="17" title="Редактировать">
+                  </a></div>
+                  <div style="float: left">
+                  <a href = "{% url 'delete-task' i.id %}">
+                  <img src="{% static "delete.png" %}" width="17" height="17" title="Удалить">
+                  </a></div><br>
                     {% endfor %}
                   {% else %}
                   На этот день не установлено задач
@@ -195,7 +261,18 @@
                 <span class="home-text6 card-Text">
                   {% if tsk_6 %}
                     {% for i in tsk_6 %}
-                      {{i.time_task}}: {{i.task_name}} <br>
+                      <div style="float: left">
+                  <a href = "{% url 'view-task' i.id %}">
+                    {{i.time_task}}: {{i.task_name}}
+                  </a>&ensp;</div>
+                  <div style="float: left">
+                  <a href = "{% url 'update-task' i.id %}">
+                  <img src="{% static "update.png" %}" width="17" height="17" title="Редактировать">
+                  </a></div>
+                  <div style="float: left">
+                  <a href = "{% url 'delete-task' i.id %}">
+                  <img src="{% static "delete.png" %}" width="17" height="17" title="Удалить">
+                  </a></div><br>
                     {% endfor %}
                   {% else %}
                   На выходные не установлено заметок
@@ -205,48 +282,6 @@
             </div>
           </div>
         </div>
-        <div class="home-section-separator"></div>
-        <div class="home-section-separator1"></div>
-        <div class="home-get-in-touch">
-          <h2 class="home-text7 section-Heading">Добавить новую задачу</h2>
-          <div class="home-content-container">
-            <div class="home-form-container">
-              <span class="home-heading6 bigCard-Heading">
-                Внесите данные по задаче
-              </span>
-              <input
-                type="text"
-                required="true"
-                placeholder="Название задачи"
-                class="home-name input"
-              />
-              <input
-                type="text"
-                required="true"
-                placeholder="Дата задачи"
-                class="home-email input"
-              />
-              <input
-                type="text"
-                required="true"
-                placeholder="Время задачи"
-                class="home-email input"
-              />
-              <textarea
-                placeholder="Описание задачи"
-                class="home-message textarea"
-              ></textarea>
-              <a href="{ % url 'post_btn' %}">
-              <button class="home-cta-btn1 anchor button">Оправить</button>
-                <\a>
-            </div>
-          </div>
-        </div>
-        <div class="home-section-separator2"></div>
-        <div class="home-footer-container">
-          <div class="home-footer">
-            <div class="home-social-links">
-
             </div>
             <div class="home-copyright-container">
               <svg viewBox="0 0 1024 1024" class="home-icon28">
