@@ -23,7 +23,7 @@ class Tasks(models.Model):
     """
     Таблица, где хранятся актуальные задачи и история
     """
-    id = models.AutoField(auto_created=True, primary_key=True, verbose_name='ID')
+    id = models.IntegerField(primary_key=True, null=False)
     user_id = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True)
     task_name = models.CharField(max_length=250)
     task_comment = models.CharField(max_length=4000)
