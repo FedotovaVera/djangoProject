@@ -1,9 +1,12 @@
+from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from .models import Profile, Tasks
+from django.urls import reverse_lazy
+
+from .models import Tasks
 from djangoApp import datemanager
 from .forms import TasksForm, DeleteForm, UpdateForm
-from django.views.generic import DetailView, UpdateView
+from django.views.generic import DetailView, UpdateView, CreateView
 
 
 def hello(request):
@@ -70,18 +73,7 @@ def AddTask(request):
     context = {'form': form}
     return render(request, 'addtask.html', context=context)
 
-    """
-#вытащить из таблицы
-def main(request): #вытащить из таблицы
-    context = {'fromdb': Maine.objects.all()[0].position}
-    return render(request, 'addtask.html', context=context)
-
-
-    #занести в таблицу
-    ex = Maine()
-    ex.user = '100pir'
-    ex.position = 'something'
-    ex.birth_date = '15-06-1991'
-    ex.save()
-    return render(request, 'addtask.html')
-"""
+class SignUp(CreateView):
+    form_class = UserCreationForm
+    success_url = reverse_lazy("login")
+    template_name = "registration/signup.html"

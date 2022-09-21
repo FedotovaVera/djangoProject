@@ -84,7 +84,13 @@
               <a href="/addtask">
                 <button class="home-cta-btn1 anchor button">Оправить</button>
                 </a>
-              <button class="home-cta-btn anchor button">Войти</button>
+              {% if user.is_authenticated %}
+                <p>Hello, {{ user.username }}!</p>
+                <p><a href="{% url 'logout' %}">Log out</a></p>
+              {% else %}
+              <a href="{% url 'login' %}">Login</a>
+              <a href="{% url 'signup' %}">Sign Up</a>
+      {% endif %}
             </div>
             <div data-type="MobileMenu" class="home-mobile-menu">
               <div class="home-container1">

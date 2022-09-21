@@ -25,6 +25,8 @@ SECRET_KEY = 'django-insecure-7z)=am=b_^eh+)avf9piw-yn6wz#@$ifbg5z_wxa_r-t-+j9f6
 DEBUG = True
 
 ALLOWED_HOSTS = []
+LOGIN_REDIRECT_URL = 'index-page'
+LOGOUT_REDIRECT_URL = 'index-page'
 
 # Application definition
 
@@ -56,7 +58,7 @@ ROOT_URLCONF = 'djangoProject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['C:\\Users\\Дом\\PycharmProjects\\djangoProject\\djangoApp\\templates'],
+        'DIRS': [BASE_DIR / "templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
