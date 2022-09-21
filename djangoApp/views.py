@@ -1,4 +1,5 @@
 from django.contrib.auth.forms import UserCreationForm
+from django.db.models import Q
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse_lazy
@@ -30,13 +31,15 @@ def hello(request):
     dt_tsk_5 = datemanager.DateManager().day_friday.strftime("%Y-%m-%d")
     tsk5 = Tasks.objects.all().order_by('time_task').filter(date_end='', date_task=dt_tsk_5)
 
-    dt6 = datemanager.DateManager().day_weekends
+    dt6 = datemanager.DateManager().day_saturday.day
     dt_tsk_6 = datemanager.DateManager().day_saturday.strftime("%Y-%m-%d")
-    dt_tsk_7 = datemanager.DateManager().day_sunday.strftime("%Y-%m-%d")
     tsk6 = Tasks.objects.all().order_by('time_task').filter(date_end='', date_task=dt_tsk_6)
+
+    dt7 = datemanager.DateManager().day_sunday.day
+    dt_tsk_7 = datemanager.DateManager().day_sunday.strftime("%Y-%m-%d")
     tsk7 = Tasks.objects.all().order_by('time_task').filter(date_end='', date_task=dt_tsk_7)
 
-    context = {'day_1': dt1, 'day_2': dt2, 'day_3': dt3, 'day_4': dt4, 'day_5': dt5, 'day_6': dt6,
+    context = {'day_1': dt1, 'day_2': dt2, 'day_3': dt3, 'day_4': dt4, 'day_5': dt5, 'day_6': dt6, 'day_7': dt7,
                'tsk_1': tsk1, 'tsk_2': tsk2, 'tsk_3': tsk3, 'tsk_4': tsk4, 'tsk_5': tsk5, 'tsk_6': tsk6, 'tsk_7': tsk7}
     return render(request, 'hello.html', context=context)
 

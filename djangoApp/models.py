@@ -10,21 +10,21 @@ class Maine(models.Model):
     user = models.TextField(max_length=500, blank=True)
     position = models.TextField(max_length=500, blank=True)
     birth_date = models.TextField(max_length=500, blank=True)
-"""
+
 
 class Profile(models.Model):
     id = models.IntegerField(primary_key=True)
     user = models.TextField(max_length=500, blank=True)
     position = models.TextField(max_length=500, blank=True)
     birth_date = models.DateField(null=True, blank=True)
-
+"""
 
 class Tasks(models.Model):
     """
     Таблица, где хранятся актуальные задачи и история
     """
     id = models.IntegerField(primary_key=True, null=False)
-    user_id = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True)
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     task_name = models.CharField(max_length=250)
     task_comment = models.CharField(max_length=4000)
     date_add = models.CharField(max_length=250)
