@@ -110,6 +110,7 @@
             </div>
           </div>
         </div>
+        {% if user.is_authenticated %}
         <div id="inspiration" class="home-features">
           <div class="home-heading-container">
             <h2 class="home-text section-Heading">
@@ -124,25 +125,25 @@
               <div class="home-text-container">
                 <span class="home-heading card-Heading">Понедельник</span>
                 <span class="home-text1 card-Text">
-                  {% if tsk_1 %}
-                    {% for i in tsk_1 %}
-                  <div style="float: left">
-                  <a href = "{% url 'view-task' i.id %}">
-                    {{i.time_task}}: {{i.task_name}}
-                  </a>&ensp;</div>
-                  <div style="float: left">
-                  <a href = "{% url 'update-task' i.id %}">
-                  <img src="{% static "update.png" %}" width="17" height="17" title="Редактировать">
-                  </a></div>
-                  <div style="float: left">
-                  <a href = "{% url 'delete-task' i.id %}">
-                  <img src="{% static "delete.png" %}" width="17" height="17" title="Удалить">
-                  </a></div>
-                  <br>
-                    {% endfor %}
-                  {% else %}
-                  На этот день не установлено задач
-                  {% endif %}
+                    {% if tsk_1 %}
+                      {% for i in tsk_1 %}
+                    <div style="float: left">
+                    <a href = "{% url 'view-task' i.id %}">
+                      {{i.time_task}}: {{i.task_name}}
+                    </a>&ensp;</div>
+                    <div style="float: left">
+                    <a href = "{% url 'update-task' i.id %}">
+                    <img src="{% static "update.png" %}" width="17" height="17" title="Редактировать">
+                    </a></div>
+                    <div style="float: left">
+                    <a href = "{% url 'delete-task' i.id %}">
+                    <img src="{% static "delete.png" %}" width="17" height="17" title="Удалить">
+                    </a></div>
+                    <br>
+                      {% endfor %}
+                    {% else %}
+                    На этот день не установлено задач
+                    {% endif %}
                 </span>
               </div>
             </div>
@@ -315,6 +316,14 @@
               </div>
           </div>
         </div>
+          {% else %}
+            <div>
+          <div class="home-features-hello" align="center">
+                   <br><br><h4> Привет!<br><br>
+          Для того что бы увидеть свои задачи, тебе необходимо авторизоваться.<br><br>
+          Если ты еще не с нами - присоединяйся! ;)</h4>
+                  {% endif %}
+                 </div></div>
             </div>
             <div class="home-copyright-container">
               <svg viewBox="0 0 1024 1024" class="home-icon28">

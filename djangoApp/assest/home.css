@@ -610,6 +610,10 @@
     width: 70%;
     margin-bottom: var(--dl-space-space-tripleunit);
   }
+    .home-features-hello {
+    width: 100%;
+    padding: 100px;
+  }
   .home-content-container {
     width: 100%;
     flex-direction: column;
