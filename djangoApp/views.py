@@ -1,19 +1,21 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from django.db.models import Q
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse_lazy
-
 from .models import Tasks
 from djangoApp import datemanager
 from .forms import TasksForm, DeleteForm, UpdateForm
 from django.views.generic import DetailView, UpdateView, CreateView
+import datetime
+from calendar import monthrange
 
 
 def hello(request):
-    user_id = User.objects.all().filter(id=request.user.id)[0].id
-
+    if request.user.is_authenticated:
+        user_id = User.objects.all().filter(id=request.user.id)[0].id
+    else:
+        user_id = 0
     dt1 = datemanager.DateManager().day_monday.day
     dt_tsk_1 = datemanager.DateManager().day_monday.strftime("%Y-%m-%d")
     tsk1 = Tasks.objects.all().order_by('time_task').filter(date_end='', date_task=dt_tsk_1, user_id_id=user_id)
@@ -71,7 +73,9 @@ def AddTask(request):
     if request.method == 'POST':
         form = TasksForm(request.POST)
         if form.is_valid():
-            form.save()
+            forma = form.save(commit=False)
+            forma.user_id_id = request.user.id
+            forma.save()
             return HttpResponseRedirect('/')
         else:
             error = 'Форма заполнена неверно'
@@ -79,7 +83,29 @@ def AddTask(request):
     context = {'form': form}
     return render(request, 'addtask.html', context=context)
 
+
 class SignUp(CreateView):
     form_class = UserCreationForm
     success_url = reverse_lazy("login")
     template_name = "registration/signup.html"
+
+
+def monthtask(request):
+    if request.user.is_authenticated:
+        user_id = User.objects.all().filter(id=request.user.id)[0].id
+    else:
+        user_id = 0
+
+    current_year = datetime.datetime.now().year
+    month = datetime.datetime.now().month
+    days = monthrange(current_year, month)[1]
+    context = {}
+    for day in range(1, days+1):
+        dt_tsk = datetime.date(day=day, month=month, year=current_year)
+        tsk = Tasks.objects.all().order_by('time_task').filter(date_end='', date_task=dt_tsk, user_id_id=user_id)
+
+        context['day_'+str(day)] = day
+        context['tsk_'+str(day)] = tsk
+    return render(request, 'hello.html', context=context)
+
+

@@ -24,6 +24,7 @@ urlpatterns = [
     path('<int:pk>/update', views.UpdateTask.as_view(), name='update-task'),
     path('<int:pk>/delete', views.DeleteTask.as_view(), name='delete-task'),
     path('accounts/', include('django.contrib.auth.urls')),
-    path("signup/", views.SignUp.as_view(), name="signup"),
+    path('signup/', views.SignUp.as_view(), name="signup"),
+    path('month/', views.monthtask, name='month'),
     path('', views.hello, name='index-page')
 ]
