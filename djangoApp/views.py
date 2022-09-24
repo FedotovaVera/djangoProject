@@ -49,6 +49,41 @@ def hello(request):
     return render(request, 'hello.html', context=context)
 
 
+def Monthtask(request):
+    if request.user.is_authenticated:
+        user_id = User.objects.all().filter(id=request.user.id)[0].id
+    else:
+        user_id = 0
+    current_year = datetime.datetime.now().year
+    month = datetime.datetime.now().month
+    days = monthrange(current_year, month)[1]
+    context = {}
+    for day in range(1, days+1):
+        dt_tsk = datetime.date(day=day, month=month, year=current_year)
+        wkday = datetime.date(day=day, month=month, year=current_year).weekday()
+        match wkday:
+            case 0:
+                dayweek = 'Понедельник'
+            case 1:
+                dayweek = 'Вторник'
+            case 2:
+                dayweek = 'Среда'
+            case 3:
+                dayweek = 'Четверг'
+            case 4:
+                dayweek = 'Пятница'
+            case 5:
+                dayweek = 'Суббота'
+            case 6:
+                dayweek = 'Воскресенье'
+        tsk = Tasks.objects.all().order_by('time_task').filter(date_end='', date_task=dt_tsk, user_id_id=user_id)
+
+        context['day_'+str(day)] = day
+        context['tsk_'+str(day)] = tsk
+        context['dayweek_' + str(day)] = dayweek
+    return render(request, 'month.html', context=context)
+
+
 class TaskDetailView(DetailView):
     model = Tasks
     template_name = 'task-view.html'
@@ -88,24 +123,5 @@ class SignUp(CreateView):
     form_class = UserCreationForm
     success_url = reverse_lazy("login")
     template_name = "registration/signup.html"
-
-
-def monthtask(request):
-    if request.user.is_authenticated:
-        user_id = User.objects.all().filter(id=request.user.id)[0].id
-    else:
-        user_id = 0
-
-    current_year = datetime.datetime.now().year
-    month = datetime.datetime.now().month
-    days = monthrange(current_year, month)[1]
-    context = {}
-    for day in range(1, days+1):
-        dt_tsk = datetime.date(day=day, month=month, year=current_year)
-        tsk = Tasks.objects.all().order_by('time_task').filter(date_end='', date_task=dt_tsk, user_id_id=user_id)
-
-        context['day_'+str(day)] = day
-        context['tsk_'+str(day)] = tsk
-    return render(request, 'hello.html', context=context)
 
 
