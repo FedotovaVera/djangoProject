@@ -13,7 +13,7 @@ conn = sqlite3.connect('C:\\Users\\Дом\\PycharmProjects\\djangoProject\\db.sq
 cursor = conn.cursor()
 
 def db_reminder_day():
-    sql = "select time_task, task_name, date_task, email from djangoapp_tasks t join auth_user u on u.id=t.user_id_id where date_task=:date_task order by u.id, date_task, time_task"
+    sql = "select time_task, task_name, date_task, email from djangoapp_tasks t join auth_user u on u.id=t.user_id_id where date_task=:date_task and date_end=''order by u.id, date_task, time_task"
     tasks = conn.cursor().execute(sql, {"date_task": date.today()}).fetchall()
     counter = list()
     for i in range(len(tasks)):
@@ -31,7 +31,7 @@ def db_reminder_day():
 
 def db_reminder_hour():
     if 6 <= datetime.now().hour <= 21:
-        sql = "select time_task, task_name, date_task, email from djangoapp_tasks t join auth_user u on u.id=t.user_id_id where date_task=:date_task and substring(time_task,1,2) between :time1 and :time2 order by u.id, date_task, time_task"
+        sql = "select time_task, task_name, date_task, email from djangoapp_tasks t join auth_user u on u.id=t.user_id_id where date_task=:date_task and date_end='' and substring(time_task,1,2) between :time1 and :time2 order by u.id, date_task, time_task"
         tasks = conn.cursor().execute(sql, {"date_task": date.today(), "time1": str(datetime.now().hour+1), "time2": str(datetime.now().hour + 4)}).fetchall()
         counter = list()
         for i in range(len(tasks)):
