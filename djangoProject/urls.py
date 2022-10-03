@@ -1,4 +1,8 @@
 from djangoApp import views
+from django.contrib import admin
+from django.urls import path, include
+
+
 """djangoProject URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -14,17 +18,18 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.urls import path, include
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('addtask/', views.AddTask, name='add-task'),
+    path('reminder/', views.ReminderTask, name='reminder'),
     path('<int:pk>/view', views.TaskDetailView.as_view(), name='view-task'),
     path('<int:pk>/update', views.UpdateTask.as_view(), name='update-task'),
     path('<int:pk>/delete', views.DeleteTask.as_view(), name='delete-task'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('signup/', views.SignUp.as_view(), name='signup'),
+    path('<int:pk>/profile', views.ProfileView.as_view(), name='profile'),
     path('month/', views.Monthtask, name='month'),
     path('', views.hello, name='index-page')
 ]

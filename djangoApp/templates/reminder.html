@@ -1,0 +1,33 @@
+{% extends "index.html" %}
+{% load static %}
+{% block title %}Настроить напоминания{% endblock %}
+{% block content %}
+{% if user.is_authenticated %}
+<br><br>
+<div class="home-features-hello" align="center">
+    <h3>
+        Настроить напоминания
+    </h3><br>
+    {% if user.first_name %}
+            {{ first_name }}
+        {% else %}
+            {{ username }}
+        {% endif %}
+    , что бы получать напоминания о твоих задачах<br>
+    тебе необходимо написать в Телеграмм боту @man_task_bot <br><br>
+    Обязательно проверь имя пользователя введенно при регистрации: <br>
+    {{last_name}}<br><br>
+    Если у твоего аккаунта другое имя пользователя в Телеграмм, то его необходимо скорректировать на странице <br>
+    <a href="{% url 'profile' request.user.id %}">"Редактировать профиль"</a>
+    {% else %}
+    <div>
+        <div class="home-features-hello" align="center">
+            <br><br><h4> Привет!<br><br>
+            Для того что бы увидеть свои задачи и настроить напоминания, тебе необходимо авторизоваться.<br><br>
+            Если ты еще не с нами - присоединяйся! ;)</h4>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

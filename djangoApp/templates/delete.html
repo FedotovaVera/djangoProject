@@ -6,7 +6,7 @@
 <br><br>
 <div class="home-features-hello" align="center">
     <h3>
-        Проверь данные по задаче, которую хотите удалить
+        Проверь данные по задаче
     </h3>
     <form method="post">
         {% csrf_token %}
@@ -16,7 +16,7 @@
         {{form.time_task}}
         {{form.date_end}}
         <span> {{error}} </span>
-        <button class="home-cta-btn1 anchor button">Удалить</button>
+        <button class="home-cta-btn1 anchor button">Выполнено</button>
     </form>
     {% else %}
     <div>

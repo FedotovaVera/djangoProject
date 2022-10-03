@@ -1,23 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.db.models.signals import post_save
-from django.dispatch import receiver
-from django.http import JsonResponse
 from django.urls import reverse
 
-"""
-class Maine(models.Model):
-    user = models.TextField(max_length=500, blank=True)
-    position = models.TextField(max_length=500, blank=True)
-    birth_date = models.TextField(max_length=500, blank=True)
-
-
-class Profile(models.Model):
-    id = models.IntegerField(primary_key=True)
-    user = models.TextField(max_length=500, blank=True)
-    position = models.TextField(max_length=500, blank=True)
-    birth_date = models.DateField(null=True, blank=True)
-"""
 
 class Tasks(models.Model):
     """
@@ -38,15 +22,3 @@ class Tasks(models.Model):
     def get_absolute_url(self):
         return reverse('index-page')
 
-
-"""
-@receiver(post_save, sender=User)
-def create_user_profile(sender, instance, created, **kwargs):
-    if created:
-        Profile.objects.create(user=instance)
-
-
-@receiver(post_save, sender=User)
-def save_user_profile(sender, instance, **kwargs):
-    instance.profile.save()
-"""

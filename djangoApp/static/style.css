@@ -122,7 +122,7 @@
   font-family: Raleway;
   font-weight: 700;
   line-height: 1.55;
-  text-transform: capitalize;
+  text-transform: none;
   text-decoration: none;
 }
 .section-Heading {

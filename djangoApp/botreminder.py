@@ -43,10 +43,10 @@ def db_reminder_hour():
                     if tasks[l][3] != '' and id == tasks[l][3]:
                         task += tasks[l][0] + ': ' + tasks[l][1] + '\n'
                 bot.send_message(id,
-                    'Напоминание\nДо завершения этих задач осталось менее 3 часов: \n' + str(task))
+                    'Напоминание\nДо завершения этих задач осталось менее 4-х часов: \n' + str(task))
 
 schedule.every(1).day.at("08:00").do(db_reminder_day)
-schedule.every(1).hour.at(":00").do(db_reminder_hour)
+schedule.every(3).hours.at(":00").do(db_reminder_hour)
 
 while True:
     schedule.run_pending()

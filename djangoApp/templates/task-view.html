@@ -4,17 +4,18 @@
 {% block content %}
 {% if user.is_authenticated %}
 <div class="home-features-hello" align="center">
+    <br>
     <h3>
         Просмотр задачи
     </h3>
-    <form method="post">
-        Название задачи: <br>{{task.task_name}}<br>
-        Описание задачи: <br>{{task.task_comment}}<br>
-        Дата задачи: <br>{{task.date_task}}<br>
-        Время задачи: <br>{{task.time_task}}<br>
+    <form>
+        {% csrf_token %}
+        Название задачи: <br>{{task.task_name}}<br><br>
+        Описание задачи: <br>{{task.task_comment}}<br><br>
+        Дата задачи: <br>{{task.date_task}}<br><br>
+        Время задачи: <br>{{task.time_task}}<br><br>
         Дата добавления задачи: <br>{{task.date_add}}<br>
         <span> {{error}} </span>
-        <button class="home-cta-btn1 anchor button">Редактировать</button>
     </form>
 </div>
 </div>

@@ -7,6 +7,8 @@
 <form method="post">
     {% csrf_token %}
     Логин: &ensp; {{form.username}}<br><br>
+    Имя на русском языке: &ensp; {{form.first_name}}<br><br>
+    Имя пользователя в Телеграмм: &ensp; {{form.last_name}}<br><br>
     Пароль: &ensp; {{form.password1}}<br><br>
     Пароль должен содержать не менее 8 символов и не может быть полностью числовым.<br><br>
     Повтор пароля: &ensp; {{form.password2}}<br><br>

@@ -3,12 +3,6 @@
 <html lang="ru">
 <head>
     <title>{% block title %}{% endblock %}</title>
-    <meta property="og:title" content="Landing Page"/>
-    <meta property="twitter:card" content="summary_large_image"/>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta charset="utf-8"/>
     <meta property="twitter:card" content="summary_large_image"/>
     <style data-tag="reset-style-sheet">
@@ -16,7 +10,7 @@
     img {
         float: left;
         margin-right: 5px;
-        opacity: 0.0;
+        opacity: 0.1;
         filter: alpha(opacity=40); /*для IE8 и более ранних версий*/
       }
       img:hover {
@@ -68,26 +62,25 @@
         <div data-role="Header" class="home-navbar-container">
             <div class="home-navbar">
                 <div class="home-left-side">
-                    <div data-type="BurgerMenu" class="home-burger-menu">
-                        <svg viewBox="0 0 1024 1024" class="home-icon">
-                            <path
-                                    d="M128 256h768v86h-768v-86zM128 554v-84h768v84h-768zM128 768v-86h768v86h-768z"
-                            ></path>
-                        </svg>
-                    </div>
                     <div class="home-links-container">
                         {% if user.is_authenticated %}
                         <span class="home-link anchor"><a href="{% url 'index-page' %}">Неделя</a></span>
                         <span class="home-link anchor"><a href="{% url 'month' %}">Месяц</a></span>
-                        <span class="home-link anchor"><a href="">Напоминания</a></span>
+                        <span class="home-link anchor"><a href="{% url 'reminder' %}">Напоминания</a></span>
                         <span class="home-link anchor"><a href="{% url 'add-task' %}">Новая задача</a></span>
                         {% endif %}
                     </div>
                 </div>
                 <div class="home-right-side">
-
                     {% if user.is_authenticated %}
-                    <p><span class="home-link anchor">Здравствуй, {{ user.username }}</span></p>
+                    <p><span class="home-link anchor">Здравствуй,
+                        {% if user.first_name %}
+                            {{ user.first_name }}
+                        {% else %}
+                            {{ user.username }}
+                        {% endif %}
+                    </span></p>
+                     <p><span class="home-link anchor"><a href="{% url 'profile' request.user.id %}">Редактировать профиль</a></span></p>
                     <p><span class="home-link anchor"><a href="{% url 'logout' %}">Выйти</a></span></p>
                     {% else %}
                     <span class="home-link anchor"><a href="{% url 'login' %}">Войти</a></span>
@@ -101,6 +94,5 @@
         </div>
     </div>
 </div>
-<script src="https://unpkg.com/@teleporthq/teleport-custom-scripts"></script>
 </body>
 </html>

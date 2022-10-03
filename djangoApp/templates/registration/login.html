@@ -10,7 +10,10 @@
         <br>
         Имя пользователя: &ensp; {{ form.username }} <br><br>
         Пароль: &ensp; {{ form.password }}<br><br>
-        <button type="submit"> Войти</button>
+        {% if form.errors %}
+        <font color="red" size="3">Пожалуйста, введи правильное имя пользователя и пароль. Учти, что оба поля могут быть чувствительны к регистру.</font><br><br>
+    {% endif %}
+        <br><button type="submit"> Войти</button><br><br>
     </form>
 </div>
 
